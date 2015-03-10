@@ -4,14 +4,16 @@
     <string name="app_name">ProjetSupervision</string>
     <string name="action_settings">Settings</string>
     <string name="appTitle">Application de supervision</string>
-    <string name="BtnDiskUsage">Consulter l'usage disque</string>
+    <string name="BtnDiskUsage">Consulter l\'usage disque</string>
     <string name="DiskUsageTitle">Utilisation DD:</string>
-    <string name="BtnCpuUsage">Consulter l'usage processeur</string>
+    <string name="BtnCpuUsage">Consulter l\'usage processeur</string>
     <string name="CpuUsageTitle">Utilisation Processeur:</string>
     <string name="BtnTempUsage">Consulter la température de la baie</string>
     <string name="TempUsageTitle">Température baie:</string>
     <string name="BtnHddStat">Statistique usage du disque dur</string>
     <string name="BtnCpuStat">Statistique usage du processeur</string>
     <string name="BtnTempStat">Statistique de température de la baie</string>
+    <string name="pref_cat_serveur_sql">Paramètres du Serveur BDD</string>
+    <string name="pref_cat_host_summary_sql">Entrer l\  'adresse ou le nom d'hôte</string>
 
 </resources>

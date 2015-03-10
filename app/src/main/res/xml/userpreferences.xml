@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+    <PreferenceCategory android:title="@string/pref_cat_serveur_sql">
+        <EditTextPreference
+            android:defaultValue="82.233.233.249"
+            android:key="PREFKEY_IPSERVEUR_SQL"
+            android:summary="@string/pref_cat_host_summary_sql"
+            android:title="@string/pref_cat_host_title_sql" />
+        <EditTextPreference
+            android:defaultValue="1433"
+            android:key="PREFKEY_PORTSERVEUR_SQL"
+            android:summary="@string/pref_cat_port_summary_sql"
+            android:title="@string/pref_cat_port_title_sql" />
+        <EditTextPreference
+            android:defaultValue="supervision"
+            android:key="PREFKEY_USERNAME_SQL"
+            android:summary="@string/pref_cat_username_title_sql"
+            android:title="@string/pref_cat_username_summary_sql" />
+        <EditTextPreference
+            android:defaultValue="Password1234"
+            android:inputType="textPassword"
+            android:key="PREFKEY_PASSWORD_SQL"
+            android:summary="@string/pref_cat_password_title_sql"
+            android:title="@string/pref_cat_password_summary_sql" />
+    </PreferenceCategory>
+    <PreferenceCategory android:title="@string/pref_cat_serveur_snmp">
+        <EditTextPreference
+            android:defaultValue="82.233.223.249"
+            android:key="PREFKEY_IPSERVEUR_SNMP"
+            android:summary="@string/pref_cat_host_summary_snmp"
+            android:title="@string/pref_cat_host_title_snmp" />
+        <EditTextPreference
+            android:defaultValue="161"
+            android:key="PREFKEY_PORTSERVEUR_SNMP"
+            android:summary="@string/pref_cat_port_summary_snmp"
+            android:title="@string/pref_cat_port_title_snmp" />
+        <EditTextPreference
+            android:defaultValue="DataCenterVDR"
+            android:key="PREFKEY_COMMUNITY_SNMP"
+            android:summary="@string/pref_cat_community_title_snmp"
+            android:title="@string/pref_cat_community_summary_snmp" />
+    </PreferenceCategory>
+    <PreferenceCategory android:title="@string/pref_cat_sonde">
+        <EditTextPreference
+            android:defaultValue="82.233.223.249"
+            android:key="PREFKEY_IPSERVEUR_SONDE"
+            android:summary="@string/pref_cat_host_summary_sonde"
+            android:title="@string/pref_cat_host_title_sonde" />
+        <EditTextPreference
+            android:defaultValue="1610"
+            android:key="PREFKEY_PORTSERVEUR_SONDE"
+            android:summary="@string/pref_cat_port_summary_sonde"
+            android:title="@string/pref_cat_port_title_sonde" />
+        <EditTextPreference
+            android:defaultValue="DataCenterVDR"
+            android:key="PREFKEY_COMMUNITY_SONDE"
+            android:summary="@string/pref_cat_community_title_sonde"
+            android:title="@string/pref_cat_community_summary_sonde" />
+    </PreferenceCategory>
+</PreferenceScreen>
