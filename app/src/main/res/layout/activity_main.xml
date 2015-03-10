@@ -19,6 +19,7 @@
         android:layout_height="wrap_content"
         android:text="@string/BtnDiskUsage"
         android:id="@+id/BtnDiskUsage"
+        android:onClick="onClickBtnDiskUsage"
         android:layout_below="@+id/textView"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
@@ -50,7 +51,7 @@
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:text="@string/CpuUsageTitle"
         android:id="@+id/textView3"
-        android:layout_below="@+id/button"
+        android:layout_below="@+id/BtnCpuUsage"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true" />
 
@@ -58,7 +59,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/BtnCpuUsage"
-        android:id="@+id/button"
+        android:id="@+id/BtnCpuUsage"
+        android:onClick="onClickBtnCpuUsage"
         android:layout_below="@+id/textView2"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true"
@@ -70,15 +72,16 @@
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:id="@+id/CpuUsageTxt"
-        android:layout_below="@+id/button"
-        android:layout_alignRight="@+id/button"
-        android:layout_alignEnd="@+id/button" />
+        android:layout_below="@+id/BtnCpuUsage"
+        android:layout_alignRight="@+id/BtnCpuUsage"
+        android:layout_alignEnd="@+id/BtnCpuUsage" />
 
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/BtnTempUsage"
-        android:id="@+id/button2"
+        android:id="@+id/BtnTempUsage"
+        android:onClick="onClickBtnTempUsage"
         android:layout_below="@+id/textView3"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
@@ -91,7 +94,7 @@
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:text="@string/TempUsageTitle"
         android:id="@+id/textView4"
-        android:layout_below="@+id/button2"
+        android:layout_below="@+id/BtnTempUsage"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true" />
 
@@ -100,40 +103,43 @@
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:id="@+id/TempUsageTxt"
-        android:layout_below="@+id/button2"
-        android:layout_alignRight="@+id/button2"
-        android:layout_alignEnd="@+id/button2" />
+        android:layout_below="@+id/BtnTempUsage"
+        android:layout_alignRight="@+id/BtnTempUsage"
+        android:layout_alignEnd="@+id/BtnTempUsage" />
 
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/BtnHddStat"
-        android:id="@+id/button3"
+        android:id="@+id/BtnHddStat"
+        android:onClick="onClickBtnHddStat"
         android:layout_centerVertical="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:layout_alignRight="@+id/button2"
-        android:layout_alignEnd="@+id/button2" />
+        android:layout_alignRight="@+id/BtnTempUsage"
+        android:layout_alignEnd="@+id/BtnTempUsage" />
 
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/BtnCpuStat"
-        android:id="@+id/button4"
-        android:layout_below="@+id/button3"
+        android:id="@+id/BtnCpuStat"
+        android:onClick="onClickBtnCpuStat"
+        android:layout_below="@+id/BtnHddStat"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:layout_alignRight="@+id/button3"
-        android:layout_alignEnd="@+id/button3" />
+        android:layout_alignRight="@+id/BtnHddStat"
+        android:layout_alignEnd="@+id/BtnHddStat" />
 
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/BtnTempStat"
-        android:id="@+id/button5"
-        android:layout_below="@+id/button4"
-        android:layout_alignRight="@+id/button4"
-        android:layout_alignEnd="@+id/button4"
+        android:id="@+id/BtnTempStat"
+        android:onClick="onClickBtnTempStat"
+        android:layout_below="@+id/BtnCpuStat"
+        android:layout_alignRight="@+id/BtnCpuStat"
+        android:layout_alignEnd="@+id/BtnCpuStat"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true" />
 </RelativeLayout>
