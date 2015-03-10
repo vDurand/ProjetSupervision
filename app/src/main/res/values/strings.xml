@@ -10,5 +10,8 @@
     <string name="CpuUsageTitle">Utilisation Processeur:</string>
     <string name="BtnTempUsage">Consulter la température de la baie</string>
     <string name="TempUsageTitle">Température baie:</string>
+    <string name="BtnHddStat">Statistique usage du disque dur</string>
+    <string name="BtnCpuStat">Statistique usage du processeur</string>
+    <string name="BtnTempStat">Statistique de température de la baie</string>
 
 </resources>
