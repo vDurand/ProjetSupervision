@@ -1,0 +1,8 @@
+ResultSet res = client.getTableUsageDD(101);
+SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss", Locale.getDefault());
+while(res.next()){
+String s = dateFormat.format(res.getTimestamp(1));
+UsageDD udd = new UsageDD(s,res.getInt(2),res.getLong(3),res.getLong(4));
+addNewLigneUsageDD(udd);
+}
+res.close();
