@@ -14,14 +14,14 @@
         <EditTextPreference
             android:defaultValue="supervision"
             android:key="PREFKEY_USERNAME_SQL"
-            android:summary="@string/pref_cat_username_title_sql"
-            android:title="@string/pref_cat_username_summary_sql" />
+            android:summary="@string/pref_cat_username_summary_sql"
+            android:title="@string/pref_cat_username_title_sql" />
         <EditTextPreference
             android:defaultValue="Password1234"
             android:inputType="textPassword"
             android:key="PREFKEY_PASSWORD_SQL"
-            android:summary="@string/pref_cat_password_title_sql"
-            android:title="@string/pref_cat_password_summary_sql" />
+            android:summary="@string/pref_cat_password_summary_sql"
+            android:title="@string/pref_cat_password_title_sql" />
     </PreferenceCategory>
     <PreferenceCategory android:title="@string/pref_cat_serveur_snmp">
         <EditTextPreference
@@ -37,8 +37,8 @@
         <EditTextPreference
             android:defaultValue="DataCenterVDR"
             android:key="PREFKEY_COMMUNITY_SNMP"
-            android:summary="@string/pref_cat_community_title_snmp"
-            android:title="@string/pref_cat_community_summary_snmp" />
+            android:summary="@string/pref_cat_community_summary_snmp"
+            android:title="@string/pref_cat_community_title_snmp" />
     </PreferenceCategory>
     <PreferenceCategory android:title="@string/pref_cat_sonde">
         <EditTextPreference
@@ -54,7 +54,7 @@
         <EditTextPreference
             android:defaultValue="DataCenterVDR"
             android:key="PREFKEY_COMMUNITY_SONDE"
-            android:summary="@string/pref_cat_community_title_sonde"
-            android:title="@string/pref_cat_community_summary_sonde" />
+            android:summary="@string/pref_cat_community_summary_sonde"
+            android:title="@string/pref_cat_community_title_sonde" />
     </PreferenceCategory>
 </PreferenceScreen>

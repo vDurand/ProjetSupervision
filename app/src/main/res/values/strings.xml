@@ -17,5 +17,24 @@
     <string name="pref_cat_host_summary_sql">Entrer l\'adresse ou le nom d\'hôte</string>
     <string name="pref_cat_host_title_sql">Serveur SQL Express</string>
     <string name="pref_cat_port_summary_sql">Entrer le port d\'écoute du serveur</string>
+    <string name="pref_cat_port_title_sql">Serveur SQL Express</string>
+    <string name="pref_cat_username_summary_sql">Entrer le nom du compte autorisé</string>
+    <string name="pref_cat_username_title_sql">Nom d\'utilisateur</string>
+    <string name="pref_cat_password_summary_sql">Entrer le mot de passe de connexion</string>
+    <string name="pref_cat_password_title_sql">Mot de passe</string>
+    <string name="pref_cat_serveur_snmp">Paramètres du serveur SNMP</string>
+    <string name="pref_cat_host_summary_snmp">Entrer l\'adresse ou le nom d\'hôte</string>
+    <string name="pref_cat_host_title_snmp">Agent SNMP V1</string>
+    <string name="pref_cat_port_summary_snmp">Entrer le port d\'écoute du serveur</string>
+    <string name="pref_cat_port_title_snmp">Agent SNMP v1</string>
+    <string name="pref_cat_community_title_snmp">Communauté SNMP en lecture</string>
+    <string name="pref_cat_community_summary_snmp">Entrer la communauté SNMP en lecture</string>
+    <string name="pref_cat_sonde">Paramètres de la sonde température SNMP</string>
+    <string name="pref_cat_host_summary_sonde">Entrer l\'adresse ou le nom d\'hôte</string>
+    <string name="pref_cat_host_title_sonde">Agent SNMP V1</string>
+    <string name="pref_cat_port_summary_sonde">Entrer le port d\'écoute du serveur</string>
+    <string name="pref_cat_port_title_sonde">Agent SNMP v1</string>
+    <string name="pref_cat_community_summary_sonde">Entrer la communauté SNMP en lecture</string>
+    <string name="pref_cat_community_title_sonde">Communauté SNMP en lecture</string>
 
 </resources>
