@@ -4,14 +4,23 @@ import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.TextView;
 
 
 public class MainActivity extends ActionBarActivity {
-
+    private String HDDusage = "0";
+    private String CPUusage = "0";
+    private String TEMPusage = "0";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        TextView txtHDD =(TextView)findViewById(R.id.DiskUsageTxt);
+        txtHDD.setText(HDDusage);
+        TextView txtCPU =(TextView)findViewById(R.id.CpuUsageTxt);
+        txtCPU.setText(CPUusage);
+        TextView txtTEMP =(TextView)findViewById(R.id.TempUsageTxt);
+        txtTEMP.setText(TEMPusage);
     }
 
 
