@@ -25,6 +25,7 @@ public class MainActivity extends ActionBarActivity {
     private TextView txtTEMP;
     static final private int MENU_PREFERENCES = Menu.FIRST;
     static final private int CODE_REQUETE_PREFERENCES = 1;
+    public final static String EXTRA_MESSAGE = "com.mycompany.myfirstapp.MESSAGE";
 
     private String ip = "82.233.223.249";
     private String port = "1433";
@@ -183,7 +184,10 @@ public class MainActivity extends ActionBarActivity {
     }
 
     public void onClickBtnHddStat(View v){
-
+        Intent intent = new Intent(this, TempListActivity.class);
+        String nom = "1";
+        intent.putExtra(EXTRA_MESSAGE, nom);
+        startActivity(intent);
     }
 
     public void onClickBtnCpuStat(View v){
@@ -192,6 +196,8 @@ public class MainActivity extends ActionBarActivity {
 
     public void onClickBtnTempStat(View v){
         Intent intent = new Intent(this, TempListActivity.class);
+        String nom = "3";
+        intent.putExtra(EXTRA_MESSAGE, nom);
         startActivity(intent);
     }
 }

@@ -38,7 +38,7 @@ public class ArrayTempAdaptateur extends ArrayAdapter<Lecture> {
             TextView tv_ville = (TextView) v.findViewById(R.id.ville);
             ImageView icone = (ImageView) v.findViewById(R.id.imageDescription);
             if (tv_nf != null) tv_nf.setText(Integer.toString(position+1));
-            if (tv_nomF != null) tv_nomF.setText(fcourant.Value+" °C");
+            if (tv_nomF != null) tv_nomF.setText(fcourant.Value);
             if (tv_statut != null) tv_statut.setText(fcourant.Date+" ");
             if (tv_ville != null) tv_ville.setText(" "+fcourant.Bay);
             if (icone != null) icone.setImageResource(R.drawable.imagetempsmll);

@@ -40,7 +40,7 @@ public class ClientSQL {
 			conn = DriverManager.getConnection(this.connexionStringBDD,this.userBDD, this.mdpBDD);
 		Log.i(TAG,"open BDD");
 		Statement stmt = conn.createStatement();
-		ResultSet result = stmt.executeQuery("select * from UsageDD");
+		ResultSet result = stmt.executeQuery("select TOP 20 * from UsageDD");
 		return result;
 	}
 
@@ -50,7 +50,7 @@ public class ClientSQL {
             conn = DriverManager.getConnection(this.connexionStringBDD,this.userBDD, this.mdpBDD);
         Log.i(TAG,"open BDD");
         Statement stmt = conn.createStatement();
-        ResultSet result = stmt.executeQuery("select * from UsageMP");
+        ResultSet result = stmt.executeQuery("select TOP 20 * from UsageMP");
         return result;
     }
 

@@ -1,5 +1,6 @@
 package supervision.valentin.durand.net.projetsupervision;
 
+        import android.content.Intent;
         import android.support.v7.app.ActionBarActivity;
         import android.os.Bundle;
         import android.view.Menu;
@@ -22,11 +23,14 @@ public class TempListActivity extends ActionBarActivity implements OnInitListene
     private String bdd = "Supervision";
     private String username = "supervision";
     private String password = "Password1234";
+    private String message;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
+        Intent intent = getIntent();
+        message = intent.getStringExtra(MainActivity.EXTRA_MESSAGE);
+System.out.println(message);
         setContentView(R.layout.temp_stat);
 
         try {
@@ -54,7 +58,10 @@ public class TempListActivity extends ActionBarActivity implements OnInitListene
         }
         else{
             this.arrayF = new ArrayList<Lecture>();
+            if(message.equals("3"))
             LoadTemp();
+            if(message.equals("1"))
+            LoadHdd();
         }
         this.arrayTempAdapt = new ArrayTempAdaptateur(this,layoutID,arrayF);
         this.listeView.setAdapter(this.arrayTempAdapt);
@@ -69,10 +76,40 @@ public class TempListActivity extends ActionBarActivity implements OnInitListene
                 try{
                     ResultSet resultat = clientBDD.getTableTEMP();
                     while(resultat.next()){
-                        String date = resultat.getString("date");
+                        String date = "date: "+resultat.getString("date");
+                        String value = resultat.getString("temp")+" °C";
+                        String bay = "machine: "+resultat.getString("MachineName");
+                        TempListActivity.this.arrayF.add(new Lecture(date, value, bay));
+                    }
+                }
+                catch(SQLException e) {
+                    System.err.println("Exception: " + e.getMessage());
+                }
+                runOnUiThread(new Runnable(){
+                    public void run(){
+                        TempListActivity.this.arrayTempAdapt.notifyDataSetChanged();
+                    }
+                });
+            }
+        }).start();
+    }
+
+    public void LoadHdd(){
+        if(!this.arrayF.isEmpty()){
+            this.arrayF.clear();
+        }
+        new Thread(new Runnable() {
+            public void run() {
+                try{
+                    ResultSet resultat = clientBDD.getTableUsageDD();
+                    while(resultat.next()){
+                        String date = "date: "+resultat.getString("date");
                         System.out.println(date);
-                        String value = resultat.getString("temp");
-                        String bay = resultat.getString("MachineName");
+                        String value = "mesure";
+                        for(int i = 1; i<10; i++){
+                            value += " : "+resultat.getString("usageMP"+i);
+                        }
+                        String bay = "nb proc: "+resultat.getString("nbProcs");
                         TempListActivity.this.arrayF.add(new Lecture(date, value, bay));
                     }
                 }
