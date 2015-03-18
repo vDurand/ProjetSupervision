@@ -20,6 +20,10 @@
             android:name=".SetPreferencesFragmentActivity"
             android:label="@string/app_name" >
         </activity>
+        <activity
+            android:name=".TempListActivity"
+            android:label="@string/title_activity_temp" >
+        </activity>
     </application>
 
 </manifest>

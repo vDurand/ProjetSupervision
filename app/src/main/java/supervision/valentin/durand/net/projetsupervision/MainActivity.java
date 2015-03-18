@@ -130,15 +130,18 @@ public class MainActivity extends ActionBarActivity {
             public void run() {
                 try{
                     MainActivity.this.result = "Utilisation CPU en %";
-                    for(int i = 2; i<10; i++){
-                        SnmpTarget target = new SnmpTarget();
-                        target.setTargetHost("82.233.223.249");
-                        target.setTargetPort(161);
-                        target.setCommunity("DataCenterVDR");
-                        SnmpOID oid = new SnmpOID(".1.3.6.1.2.1.25.3.3.1.2."+i);
-                        target.setSnmpOID(oid);
-                        MainActivity.this.result += " : "+target.snmpGet();
+
+                    SnmpTarget target = new SnmpTarget();
+                    target.setTargetHost("82.233.223.249");
+                    target.setTargetPort(161);
+                    target.setCommunity("DataCenterVDR");
+                    SnmpOID[] oid = new SnmpOID[8];
+                    for(int i = 0; i<8; i++) {
+                        oid[i] = new SnmpOID(".1.3.6.1.2.1.25.3.3.1.2." + (i + 2));
                     }
+                    target.setSnmpOIDList(oid);
+                    for (String t :target.snmpGetList())
+                        MainActivity.this.result += " : "+t;
 
                 }
                 catch(Exception e) {
@@ -188,6 +191,7 @@ public class MainActivity extends ActionBarActivity {
     }
 
     public void onClickBtnTempStat(View v){
-
+        Intent intent = new Intent(this, TempListActivity.class);
+        startActivity(intent);
     }
 }
