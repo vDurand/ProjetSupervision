@@ -54,10 +54,10 @@ public class TempListActivity extends ActionBarActivity implements OnInitListene
         }
         else{
             this.arrayF = new ArrayList<Lecture>();
+            LoadTemp();
         }
         this.arrayTempAdapt = new ArrayTempAdaptateur(this,layoutID,arrayF);
         this.listeView.setAdapter(this.arrayTempAdapt);
-        LoadTemp();
     }
 
     public void LoadTemp(){
@@ -92,7 +92,11 @@ public class TempListActivity extends ActionBarActivity implements OnInitListene
     public void onInit(int status) {
 
     }
-
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+        outState.putSerializable(TempListActivity.TABLE_F_KEY, this.arrayF);
+    }
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
