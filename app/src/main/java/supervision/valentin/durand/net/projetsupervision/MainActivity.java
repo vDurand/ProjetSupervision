@@ -86,13 +86,17 @@ public class MainActivity extends ActionBarActivity {
         new Thread(new Runnable() {
             public void run() {
                 try{
+                    MainActivity.this.result = "Capacité : ";
                     SnmpTarget target = new SnmpTarget();
                     target.setTargetHost("82.233.223.249");
                     target.setTargetPort(161);
                     target.setCommunity("DataCenterVDR");
-                    SnmpOID oid = new SnmpOID("1.3.6.1.2.1.25.2.3.1.6.1");
-                    target.setSnmpOID(oid);
-                    MainActivity.this.result = target.snmpGet();
+                    SnmpOID oidCap = new SnmpOID(".1.3.6.1.2.1.25.2.3.1.5.1");
+                    SnmpOID oidUti = new SnmpOID(".1.3.6.1.2.1.25.2.3.1.6.1");
+                    target.setSnmpOID(oidCap);
+                    MainActivity.this.result += target.snmpGet();
+                    target.setSnmpOID(oidUti);
+                    MainActivity.this.result += " B et Utilisation : "+target.snmpGet()+" B";
                 }
                 catch(Exception e) {
                     System.err.println("Exception: " + e.getMessage());
@@ -110,12 +114,17 @@ public class MainActivity extends ActionBarActivity {
         new Thread(new Runnable() {
             public void run() {
                 try{
-                    SnmpTarget target = new SnmpTarget();
-                    target.setTargetHost("82.233.223.249");
-                    target.setTargetPort(161);
-                    target.setCommunity("DataCenterVDR");
-                    target.setObjectID("1.3.6.1.2.1.25.3.3.1.2.(k+1)");
-                    MainActivity.this.result = target.snmpGet();
+                    MainActivity.this.result = "Utilisation CPU en %";
+                    for(int i = 2; i<10; i++){
+                        SnmpTarget target = new SnmpTarget();
+                        target.setTargetHost("82.233.223.249");
+                        target.setTargetPort(161);
+                        target.setCommunity("DataCenterVDR");
+                        SnmpOID oid = new SnmpOID(".1.3.6.1.2.1.25.3.3.1.2."+i);
+                        target.setSnmpOID(oid);
+                        MainActivity.this.result += " : "+target.snmpGet();
+                    }
+
                 }
                 catch(Exception e) {
                     System.err.println("Exception: " + e.getMessage());
@@ -130,7 +139,29 @@ public class MainActivity extends ActionBarActivity {
     }
 
     public void onClickBtnTempUsage(View v){
-        txtTEMP.setText("15");
+        new Thread(new Runnable() {
+            public void run() {
+                try{
+                    MainActivity.this.result = "Temp en °C : ";
+                    SnmpTarget target = new SnmpTarget();
+                    target.setTargetHost("82.233.223.249");
+                    target.setTargetPort(1610);
+                    target.setCommunity("DataCenterVDR");
+                    SnmpOID oid = new SnmpOID(".1.3.6.1.4.1.21796.4.1.3.1.4.1");
+                    target.setSnmpOID(oid);
+                    MainActivity.this.result += target.snmpGet();
+
+                }
+                catch(Exception e) {
+                    System.err.println("Exception: " + e.getMessage());
+                }
+                runOnUiThread(new Runnable(){
+                    public void run(){
+                        MainActivity.this.txtTEMP.setText(MainActivity.this.result);
+                    }
+                });
+            }
+        }).start();
     }
 
     public void onClickBtnHddStat(View v){
