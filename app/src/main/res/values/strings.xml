@@ -36,5 +36,6 @@
     <string name="pref_cat_port_title_sonde">Agent SNMP v1</string>
     <string name="pref_cat_community_summary_sonde">Entrer la communauté SNMP en lecture</string>
     <string name="pref_cat_community_title_sonde">Communauté SNMP en lecture</string>
+    <string name="menu_preferences">Settings</string>
 
 </resources>
