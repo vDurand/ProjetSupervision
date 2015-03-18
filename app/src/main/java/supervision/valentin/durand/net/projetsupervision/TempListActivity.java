@@ -10,7 +10,6 @@ package supervision.valentin.durand.net.projetsupervision;
         import java.sql.ResultSet;
         import java.sql.SQLException;
         import java.util.ArrayList;
-        import java.util.Locale;
 
 public class TempListActivity extends ActionBarActivity implements OnInitListener {
     public ListView listeView;
@@ -58,6 +57,7 @@ public class TempListActivity extends ActionBarActivity implements OnInitListene
         }
         this.arrayTempAdapt = new ArrayTempAdaptateur(this,layoutID,arrayF);
         this.listeView.setAdapter(this.arrayTempAdapt);
+        LoadTemp();
     }
 
     public void LoadTemp(){
@@ -70,6 +70,7 @@ public class TempListActivity extends ActionBarActivity implements OnInitListene
                     ResultSet resultat = clientBDD.getTableTEMP();
                     while(resultat.next()){
                         String date = resultat.getString("date");
+                        System.out.println(date);
                         String value = resultat.getString("temp");
                         String bay = resultat.getString("MachineName");
                         TempListActivity.this.arrayF.add(new Lecture(date, value, bay));

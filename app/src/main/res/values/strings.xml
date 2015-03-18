@@ -38,6 +38,6 @@
     <string name="pref_cat_community_title_sonde">Communauté SNMP en lecture</string>
     <string name="menu_preferences">Settings</string>
     <string name="tempstattitle">Statistiques des température de la baie</string>
-    <string name="imageDescription">imagetemp.jpg</string>
+    <string name="imageDescription">imagetempsmll.jpg</string>
     <string name="title_activity_temp">Temperature de la baie</string>
 </resources>

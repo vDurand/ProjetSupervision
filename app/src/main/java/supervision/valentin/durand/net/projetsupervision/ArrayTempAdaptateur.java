@@ -16,7 +16,6 @@ public class ArrayTempAdaptateur extends ArrayAdapter<Lecture> {
     private ArrayList<Lecture> objets;
     private int item_id;
 
-    //Surcharge du constructeur ArrayAdapteur
     public ArrayTempAdaptateur(Context context, int textViewResourceId, ArrayList<Lecture> objects)
     {
         super(context, textViewResourceId, objects);
@@ -37,12 +36,12 @@ public class ArrayTempAdaptateur extends ArrayAdapter<Lecture> {
             TextView tv_nomF = (TextView) v.findViewById(R.id.nomF);
             TextView tv_statut = (TextView) v.findViewById(R.id.statut);
             TextView tv_ville = (TextView) v.findViewById(R.id.ville);
-            //ImageView icone = (ImageView) v.findViewById(R.id.imgUsine);
-            if (tv_nf != null) tv_nf.setText(position);
+            ImageView icone = (ImageView) v.findViewById(R.id.imageDescription);
+            if (tv_nf != null) tv_nf.setText(Integer.toString(position));
             if (tv_nomF != null) tv_nomF.setText(fcourant.Value);
             if (tv_statut != null) tv_statut.setText(fcourant.Date);
             if (tv_ville != null) tv_ville.setText(fcourant.Bay);
-            //if (icone != null) icone.setImageResource(R.drawable.usine);
+            if (icone != null) icone.setImageResource(R.drawable.imagetempsmll);
         }
         return v;
     }

@@ -11,7 +11,7 @@ import android.util.Log;
 
 public class ClientSQL {
 
-	private static final String TAG = "ClientSQLMetier";
+	private static final String TAG = "ClientSQL";
 	private String serveurBDD;
 	private String nomBDD;
 	private String userBDD;
@@ -30,6 +30,7 @@ public class ClientSQL {
 		setConnexionStringBDD("jdbc:jtds:sqlserver://"+getServeurBDD().toString()+":"+port.toString()+"/"+bdd+";encrypt=false;instance=SQLEXPRESS;loginTimeout="+to+";socketTimeout="+to+";");
 		// Chargement du drivers
 		Class.forName("net.sourceforge.jtds.jdbc.Driver").newInstance();
+        System.out.println("con init");
 		DriverManager.setLoginTimeout(timeout);
 	}
 
@@ -59,7 +60,7 @@ public class ClientSQL {
             conn = DriverManager.getConnection(this.connexionStringBDD,this.userBDD, this.mdpBDD);
         Log.i(TAG,"open BDD");
         Statement stmt = conn.createStatement();
-        ResultSet result = stmt.executeQuery("select * from Temperatures");
+        ResultSet result = stmt.executeQuery("select TOP 20 * from Temperatures");
         return result;
     }
 
