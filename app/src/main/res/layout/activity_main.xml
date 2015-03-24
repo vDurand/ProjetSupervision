@@ -24,7 +24,9 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true" />
+        android:layout_alignParentEnd="true"
+        android:enabled="true"
+        android:clickable="true" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -65,7 +67,8 @@
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
+        android:layout_alignParentStart="true"
+        android:enabled="true" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -86,7 +89,8 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true" />
+        android:layout_alignParentEnd="true"
+        android:enabled="true" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -117,7 +121,8 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:layout_alignRight="@+id/BtnTempUsage"
-        android:layout_alignEnd="@+id/BtnTempUsage" />
+        android:layout_alignEnd="@+id/BtnTempUsage"
+        android:enabled="true" />
 
     <Button
         android:layout_width="wrap_content"
@@ -129,7 +134,8 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:layout_alignRight="@+id/BtnHddStat"
-        android:layout_alignEnd="@+id/BtnHddStat" />
+        android:layout_alignEnd="@+id/BtnHddStat"
+        android:enabled="true" />
 
     <Button
         android:layout_width="wrap_content"
@@ -141,5 +147,6 @@
         android:layout_alignRight="@+id/BtnCpuStat"
         android:layout_alignEnd="@+id/BtnCpuStat"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
+        android:layout_alignParentStart="true"
+        android:enabled="true" />
 </RelativeLayout>

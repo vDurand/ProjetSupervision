@@ -1,13 +1,19 @@
 package supervision.valentin.durand.net.projetsupervision;
 
+import android.content.BroadcastReceiver;
+import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.content.SharedPreferences;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.preference.PreferenceManager;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 
 import com.adventnet.snmp.beans.SnmpTarget;
@@ -35,6 +41,8 @@ public class MainActivity extends ActionBarActivity {
     private ClientSQL clientBDD;
     public String result;
 
+    private BroadcastReceiver connexionReceiver;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -42,6 +50,62 @@ public class MainActivity extends ActionBarActivity {
         txtHDD = (TextView)findViewById(R.id.DiskUsageTxt);
         txtCPU = (TextView)findViewById(R.id.CpuUsageTxt);
         txtTEMP = (TextView)findViewById(R.id.TempUsageTxt);
+        IntentFilter filtreConnectivity = new IntentFilter("android.net.conn.CONNECTIVITY_CHANGE");
+
+        connexionReceiver = new BroadcastReceiver() {
+            @Override
+            public void onReceive(Context context, Intent intent) {
+                ConnectivityManager cm =
+                        (ConnectivityManager)context.getSystemService(Context.CONNECTIVITY_SERVICE);
+                NetworkInfo activeNetwork = cm.getActiveNetworkInfo();
+                if(activeNetwork != null){
+                    if(activeNetwork.isConnected()==true)
+                    {
+                        Button BtnDiskUsage = (Button) findViewById(R.id.BtnDiskUsage);
+                        BtnDiskUsage.setEnabled(true);
+                        Button BtnCpuUsage = (Button) findViewById(R.id.BtnCpuUsage);
+                        BtnCpuUsage.setEnabled(true);
+                        Button BtnTempUsage = (Button) findViewById(R.id.BtnTempUsage);
+                        BtnTempUsage.setEnabled(true);
+                        Button BtnHddStat = (Button) findViewById(R.id.BtnHddStat);
+                        BtnHddStat.setEnabled(true);
+                        Button BtnCpuStat = (Button) findViewById(R.id.BtnCpuStat);
+                        BtnCpuStat.setEnabled(true);
+                        Button BtnTempStat = (Button) findViewById(R.id.BtnTempStat);
+                        BtnTempStat.setEnabled(true);
+                    }
+                    else {
+                        Button BtnDiskUsage = (Button) findViewById(R.id.BtnDiskUsage);
+                        BtnDiskUsage.setEnabled(false);
+                        Button BtnCpuUsage = (Button) findViewById(R.id.BtnCpuUsage);
+                        BtnCpuUsage.setEnabled(false);
+                        Button BtnTempUsage = (Button) findViewById(R.id.BtnTempUsage);
+                        BtnTempUsage.setEnabled(false);
+                        Button BtnHddStat = (Button) findViewById(R.id.BtnHddStat);
+                        BtnHddStat.setEnabled(false);
+                        Button BtnCpuStat = (Button) findViewById(R.id.BtnCpuStat);
+                        BtnCpuStat.setEnabled(false);
+                        Button BtnTempStat = (Button) findViewById(R.id.BtnTempStat);
+                        BtnTempStat.setEnabled(false);
+                    }
+                }
+                else {
+                    Button BtnDiskUsage = (Button) findViewById(R.id.BtnDiskUsage);
+                    BtnDiskUsage.setEnabled(false);
+                    Button BtnCpuUsage = (Button) findViewById(R.id.BtnCpuUsage);
+                    BtnCpuUsage.setEnabled(false);
+                    Button BtnTempUsage = (Button) findViewById(R.id.BtnTempUsage);
+                    BtnTempUsage.setEnabled(false);
+                    Button BtnHddStat = (Button) findViewById(R.id.BtnHddStat);
+                    BtnHddStat.setEnabled(false);
+                    Button BtnCpuStat = (Button) findViewById(R.id.BtnCpuStat);
+                    BtnCpuStat.setEnabled(false);
+                    Button BtnTempStat = (Button) findViewById(R.id.BtnTempStat);
+                    BtnTempStat.setEnabled(false);
+                }
+            }
+        };
+        registerReceiver(connexionReceiver,filtreConnectivity);
 
         try {
             clientBDD = new ClientSQL(ip, port, bdd, username, password, 5);
