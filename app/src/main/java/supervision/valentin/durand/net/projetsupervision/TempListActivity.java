@@ -7,6 +7,7 @@ package supervision.valentin.durand.net.projetsupervision;
         import android.view.MenuItem;
         import android.speech.tts.TextToSpeech.OnInitListener;
         import android.widget.ListView;
+        import android.widget.TextView;
 
         import java.sql.ResultSet;
         import java.sql.SQLException;
@@ -57,11 +58,19 @@ System.out.println(message);
             this.arrayF = (ArrayList<Lecture>) savedInstanceState.getSerializable(TempListActivity.TABLE_F_KEY);
         }
         else{
+            TextView titleTextView = (TextView)findViewById(R.id.textView5);
             this.arrayF = new ArrayList<Lecture>();
-            if(message.equals("3"))
-            LoadTemp();
-            if(message.equals("1"))
-            LoadHdd();
+            if(message.equals("3")){
+                LoadTemp();
+            }
+            if(message.equals("2")){
+                titleTextView.setText("Statistiques des processeurs de la baie");
+                LoadCpu();
+            }
+            if(message.equals("1")){
+                titleTextView.setText("Statistiques du disque dur de la baie");
+                LoadHdd();
+            }
         }
         this.arrayTempAdapt = new ArrayTempAdaptateur(this,layoutID,arrayF);
         this.listeView.setAdapter(this.arrayTempAdapt);
@@ -79,7 +88,38 @@ System.out.println(message);
                         String date = "date: "+resultat.getString("date");
                         String value = resultat.getString("temp")+" °C";
                         String bay = "machine: "+resultat.getString("MachineName");
-                        TempListActivity.this.arrayF.add(new Lecture(date, value, bay));
+                        TempListActivity.this.arrayF.add(new Lecture(date, value, bay,3));
+                    }
+                }
+                catch(SQLException e) {
+                    System.err.println("Exception: " + e.getMessage());
+                }
+                runOnUiThread(new Runnable(){
+                    public void run(){
+                        TempListActivity.this.arrayTempAdapt.notifyDataSetChanged();
+                    }
+                });
+            }
+        }).start();
+    }
+
+    public void LoadCpu(){
+        if(!this.arrayF.isEmpty()){
+            this.arrayF.clear();
+        }
+        new Thread(new Runnable() {
+            public void run() {
+                try{
+                    ResultSet resultat = clientBDD.getTableUsageMP();
+                    while(resultat.next()){
+                        String date = "date: "+resultat.getString("date");
+                        System.out.println(date);
+                        String value = "mesure";
+                        for(int i = 1; i<9; i++){
+                            value += " : "+resultat.getString("usageMP"+i);
+                        }
+                        String bay = "nb proc: "+resultat.getString("nbProcs");
+                        TempListActivity.this.arrayF.add(new Lecture(date, value, bay,2));
                     }
                 }
                 catch(SQLException e) {
@@ -105,12 +145,10 @@ System.out.println(message);
                     while(resultat.next()){
                         String date = "date: "+resultat.getString("date");
                         System.out.println(date);
-                        String value = "mesure";
-                        for(int i = 1; i<10; i++){
-                            value += " : "+resultat.getString("usageMP"+i);
-                        }
-                        String bay = "nb proc: "+resultat.getString("nbProcs");
-                        TempListActivity.this.arrayF.add(new Lecture(date, value, bay));
+                        String value = "utilisé";
+                        value += " : "+resultat.getString("utilisé");
+                        String bay = "capacite: "+resultat.getString("capacité");
+                        TempListActivity.this.arrayF.add(new Lecture(date, value, bay,1));
                     }
                 }
                 catch(SQLException e) {

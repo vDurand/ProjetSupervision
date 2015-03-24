@@ -41,7 +41,14 @@ public class ArrayTempAdaptateur extends ArrayAdapter<Lecture> {
             if (tv_nomF != null) tv_nomF.setText(fcourant.Value);
             if (tv_statut != null) tv_statut.setText(fcourant.Date+" ");
             if (tv_ville != null) tv_ville.setText(" "+fcourant.Bay);
-            if (icone != null) icone.setImageResource(R.drawable.imagetempsmll);
+            if (icone != null) {
+                if(fcourant.what == 3)
+                    icone.setImageResource(R.drawable.imagetempsmll);
+                else if(fcourant.what == 2)
+                    icone.setImageResource(R.drawable.imagempsmll);
+                else
+                    icone.setImageResource(R.drawable.imagehddsmll);
+            }
         }
         return v;
     }

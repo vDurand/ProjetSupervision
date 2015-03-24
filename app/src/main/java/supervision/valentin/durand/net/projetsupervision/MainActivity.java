@@ -191,7 +191,10 @@ public class MainActivity extends ActionBarActivity {
     }
 
     public void onClickBtnCpuStat(View v){
-
+        Intent intent = new Intent(this, TempListActivity.class);
+        String nom = "2";
+        intent.putExtra(EXTRA_MESSAGE, nom);
+        startActivity(intent);
     }
 
     public void onClickBtnTempStat(View v){
