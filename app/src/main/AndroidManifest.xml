@@ -26,6 +26,10 @@
             android:name=".TempListActivity"
             android:label="@string/title_activity_temp" >
         </activity>
+        <activity
+            android:name=".plotTEMPactivity"
+            android:label="@string/title_activity_temp" >
+        </activity>
     </application>
 
 </manifest>

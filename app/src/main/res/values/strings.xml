@@ -40,4 +40,5 @@
     <string name="tempstattitle">Statistiques des température de la baie</string>
     <string name="imageDescription">imagetempsmll.jpg</string>
     <string name="title_activity_temp">Statistiques de la baie</string>
+    <string name="btnGraph">Courbe des statistiques</string>
 </resources>

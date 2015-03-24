@@ -6,6 +6,7 @@ package supervision.valentin.durand.net.projetsupervision;
         import android.view.Menu;
         import android.view.MenuItem;
         import android.speech.tts.TextToSpeech.OnInitListener;
+        import android.view.View;
         import android.widget.ListView;
         import android.widget.TextView;
 
@@ -161,6 +162,18 @@ System.out.println(message);
                 });
             }
         }).start();
+    }
+
+    public void onClickBtnGraph(View v){
+        if(message.equals("3")){
+            startActivity(new Intent(this, plotTEMPactivity.class).putExtra("temperature", arrayF));
+        }
+        else if(message.equals("2")){
+            startActivity(new Intent(this, plotMPactivity.class));
+        }
+        else{
+            startActivity(new Intent(this, plotDDactivity.class));
+        }
     }
 
     @Override
