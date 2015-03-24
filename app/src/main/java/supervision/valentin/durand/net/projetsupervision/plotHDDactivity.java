@@ -15,7 +15,7 @@ import android.view.Menu;
 import java.util.Arrays;
 import java.util.ArrayList;
 
-public class plotTEMPactivity extends ActionBarActivity {
+public class plotHDDactivity extends ActionBarActivity {
 
     private static final String LISTE_DD_KEY = "";
     private XYPlot plot;
@@ -28,13 +28,13 @@ public class plotTEMPactivity extends ActionBarActivity {
         super.onCreate(savedInstanceState);
 
         Intent intent = getIntent();
-        arrayF = (ArrayList<Lecture>) intent.getSerializableExtra("temperature");
+        arrayF = (ArrayList<Lecture>) intent.getSerializableExtra("stockage");
 
-        setContentView(R.layout.temp_graph);
+        setContentView(R.layout.hdd_graph);
 
         ordonne = new Float[arrayF.size()];
         for (int i = 0; i < arrayF.size(); i++) {
-            ordonne[i] = Float.parseFloat(arrayF.get(i).mesure);
+            ordonne[i] = Float.parseFloat(arrayF.get(i).mesure)/1000;
         }
 
         abscisse = new Float[ordonne.length];
@@ -48,10 +48,10 @@ public class plotTEMPactivity extends ActionBarActivity {
             }
         }
 
-        plot = (XYPlot) findViewById(R.id.temp_graph);
+        plot = (XYPlot) findViewById(R.id.hdd_graph);
         plot.setRangeLabel("%");
         plot.setDomainLabel("Temps relatif");
-        plot.setRangeBoundaries(10, 40, BoundaryMode.FIXED);
+        plot.setRangeBoundaries(20000000, 30000000, BoundaryMode.FIXED);
         plot.getBorderPaint().setColor(Color.BLACK);
         plot.getBackgroundPaint().setColor(Color.BLACK);
         plot.setDrawingCacheBackgroundColor(Color.BLACK);

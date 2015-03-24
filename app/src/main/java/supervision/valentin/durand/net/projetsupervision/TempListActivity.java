@@ -89,7 +89,7 @@ System.out.println(message);
                         String date = "date: "+resultat.getString("date");
                         String value = resultat.getString("temp")+" °C";
                         String bay = "machine: "+resultat.getString("MachineName");
-                        TempListActivity.this.arrayF.add(new Lecture(date, value, bay,3));
+                        TempListActivity.this.arrayF.add(new Lecture(date, value, bay,3, resultat.getString("temp")));
                     }
                 }
                 catch(SQLException e) {
@@ -116,11 +116,14 @@ System.out.println(message);
                         String date = "date: "+resultat.getString("date");
                         System.out.println(date);
                         String value = "mesure";
+                        Float moy = 0.0f;
                         for(int i = 1; i<9; i++){
                             value += " : "+resultat.getString("usageMP"+i);
+                            moy += Float.parseFloat(resultat.getString("usageMP"+i));
                         }
+                        moy = moy/9;
                         String bay = "nb proc: "+resultat.getString("nbProcs");
-                        TempListActivity.this.arrayF.add(new Lecture(date, value, bay,2));
+                        TempListActivity.this.arrayF.add(new Lecture(date, value, bay,2, Float.toString(moy)));
                     }
                 }
                 catch(SQLException e) {
@@ -148,8 +151,9 @@ System.out.println(message);
                         System.out.println(date);
                         String value = "utilisé";
                         value += " : "+resultat.getString("utilisé");
+                        System.out.println(resultat.getString("utilisé"));
                         String bay = "capacite: "+resultat.getString("capacité");
-                        TempListActivity.this.arrayF.add(new Lecture(date, value, bay,1));
+                        TempListActivity.this.arrayF.add(new Lecture(date, value, bay,1,resultat.getString("utilisé")));
                     }
                 }
                 catch(SQLException e) {
@@ -169,10 +173,10 @@ System.out.println(message);
             startActivity(new Intent(this, plotTEMPactivity.class).putExtra("temperature", arrayF));
         }
         else if(message.equals("2")){
-            startActivity(new Intent(this, plotMPactivity.class));
+            startActivity(new Intent(this, plotCPUactivity.class).putExtra("processeur", arrayF));
         }
         else{
-            startActivity(new Intent(this, plotDDactivity.class));
+            startActivity(new Intent(this, plotHDDactivity.class).putExtra("stockage", arrayF));
         }
     }
 
