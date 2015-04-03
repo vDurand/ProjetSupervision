@@ -1,6 +1,8 @@
 package supervision.valentin.durand.net.projetsupervision;
 
         import android.content.Intent;
+        import android.content.SharedPreferences;
+        import android.preference.PreferenceManager;
         import android.support.v7.app.ActionBarActivity;
         import android.os.Bundle;
         import android.view.Menu;
@@ -39,8 +41,15 @@ public class TempListActivity extends ActionBarActivity implements OnInitListene
         btnGraph = (Button) findViewById(R.id.button);
         btnGraph.setEnabled(false);
 
+        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+
         try {
-            clientBDD = new ClientSQL(ip, port, bdd, username, password, 5);
+            clientBDD = new ClientSQL(
+                    prefs.getString( PreferencesFragments.PREFKEY_IPSERVEUR_SQL, "82.233.223.249"),
+                    prefs.getString( PreferencesFragments.PREFKEY_PORTSERVEUR_SQL, "1433"),
+                    prefs.getString( PreferencesFragments.PREFKEY_NAME_SQL, "Supervision"),
+                    prefs.getString( PreferencesFragments.PREFKEY_USERNAME_SQL, "supervision"),
+                    prefs.getString( PreferencesFragments.PREFKEY_PASSWORD_SQL, "Password1234"), 5);
         }
         catch (SQLException e) {
             System.err.println("Caught SQLException: " + e.getMessage());

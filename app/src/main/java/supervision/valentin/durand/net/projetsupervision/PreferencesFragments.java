@@ -10,6 +10,7 @@ public class PreferencesFragments extends PreferenceFragment {
     // Ctes string, clés de sauvegarde des préférences
     public static final String PREFKEY_IPSERVEUR_SQL ="PREFKEY_IPSERVEUR_SQL";
     public static final String PREFKEY_PORTSERVEUR_SQL="PREFKEY_PORTSERVEUR_SQL";
+    public static final String PREFKEY_NAME_SQL ="PREFKEY_NAME_SQL";    ;
     public static final String PREFKEY_USERNAME_SQL ="PREFKEY_USERNAME_SQL";
     public static final String PREFKEY_PASSWORD_SQL ="PREFKEY_PASSWORD_SQL";
     public static final String PREFKEY_IPSERVEUR_SNMP ="PREFKEY_IPSERVEUR_SNMP";

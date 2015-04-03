@@ -33,6 +33,7 @@ public class MainActivity extends ActionBarActivity {
     static final private int CODE_REQUETE_PREFERENCES = 1;
     public final static String EXTRA_MESSAGE = "com.mycompany.myfirstapp.MESSAGE";
 
+    protected SharedPreferences preferences;
     private String ip = "82.233.223.249";
     private String port = "1433";
     private String bdd = "Supervision";
@@ -51,7 +52,6 @@ public class MainActivity extends ActionBarActivity {
         txtCPU = (TextView)findViewById(R.id.CpuUsageTxt);
         txtTEMP = (TextView)findViewById(R.id.TempUsageTxt);
         IntentFilter filtreConnectivity = new IntentFilter("android.net.conn.CONNECTIVITY_CHANGE");
-
         connexionReceiver = new BroadcastReceiver() {
             @Override
             public void onReceive(Context context, Intent intent) {
@@ -107,8 +107,15 @@ public class MainActivity extends ActionBarActivity {
         };
         registerReceiver(connexionReceiver,filtreConnectivity);
 
+        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+
         try {
-            clientBDD = new ClientSQL(ip, port, bdd, username, password, 5);
+            clientBDD = new ClientSQL(
+                    prefs.getString( PreferencesFragments.PREFKEY_IPSERVEUR_SQL, "82.233.223.249"),
+                    prefs.getString( PreferencesFragments.PREFKEY_PORTSERVEUR_SQL, "1433"),
+                    prefs.getString( PreferencesFragments.PREFKEY_NAME_SQL, "Supervision"),
+                    prefs.getString( PreferencesFragments.PREFKEY_USERNAME_SQL, "supervision"),
+                    prefs.getString( PreferencesFragments.PREFKEY_PASSWORD_SQL, "Password1234"), 5);
         }
         catch (SQLException e) {
             System.err.println("Caught SQLException: " + e.getMessage());
@@ -128,7 +135,6 @@ public class MainActivity extends ActionBarActivity {
         txtCPU.setText(CPUusage);
         txtTEMP.setText(TEMPusage);
     }
-
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -158,11 +164,10 @@ public class MainActivity extends ActionBarActivity {
         SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
         ip = prefs.getString( PreferencesFragments.PREFKEY_IPSERVEUR_SQL, "82.233.223.249");
         port = prefs.getString( PreferencesFragments.PREFKEY_PORTSERVEUR_SQL, "1433");
+        bdd = prefs.getString( PreferencesFragments.PREFKEY_NAME_SQL, "Supervision");
         username = prefs.getString( PreferencesFragments.PREFKEY_USERNAME_SQL, "supervision");
         password = prefs.getString( PreferencesFragments.PREFKEY_PASSWORD_SQL, "Password1234");
     }
-
-    protected SharedPreferences preferences;
 
     public void onClickBtnDiskUsage(View v){
         this.preferences = PreferenceManager.getDefaultSharedPreferences(this);
@@ -172,8 +177,8 @@ public class MainActivity extends ActionBarActivity {
                     MainActivity.this.result = "Capacité : ";
                     SnmpTarget target = new SnmpTarget();
                     target.setTargetHost(preferences.getString("PREFKEY_IPSERVEUR_SNMP", "82.233.223.249"));
-                    target.setTargetPort(161);
-                    target.setCommunity("DataCenterVDR");
+                    target.setTargetPort(Integer.valueOf(preferences.getString("PREFKEY_PORTSERVEUR_SNMP", "161")));
+                    target.setCommunity(preferences.getString("PREFKEY_COMMUNITY_SNMP", "DataCenterVDR"));
                     SnmpOID oidCap = new SnmpOID(".1.3.6.1.2.1.25.2.3.1.5.1");
                     SnmpOID oidUti = new SnmpOID(".1.3.6.1.2.1.25.2.3.1.6.1");
                     target.setSnmpOID(oidCap);
@@ -200,9 +205,9 @@ public class MainActivity extends ActionBarActivity {
                     MainActivity.this.result = "Utilisation CPU en %";
 
                     SnmpTarget target = new SnmpTarget();
-                    target.setTargetHost("82.233.223.249");
-                    target.setTargetPort(161);
-                    target.setCommunity("DataCenterVDR");
+                    target.setTargetHost(preferences.getString("PREFKEY_IPSERVEUR_SNMP", "82.233.223.249"));
+                    target.setTargetPort(Integer.valueOf(preferences.getString("PREFKEY_PORTSERVEUR_SNMP", "161")));
+                    target.setCommunity(preferences.getString("PREFKEY_COMMUNITY_SNMP", "DataCenterVDR"));
                     SnmpOID[] oid = new SnmpOID[8];
                     for(int i = 0; i<8; i++) {
                         oid[i] = new SnmpOID(".1.3.6.1.2.1.25.3.3.1.2." + (i + 2));
@@ -230,9 +235,9 @@ public class MainActivity extends ActionBarActivity {
                 try{
                     MainActivity.this.result = "Temp en °C : ";
                     SnmpTarget target = new SnmpTarget();
-                    target.setTargetHost("82.233.223.249");
-                    target.setTargetPort(1610);
-                    target.setCommunity("DataCenterVDR");
+                    target.setTargetHost(preferences.getString("PREFKEY_IPSERVEUR_SONDE", "82.233.223.249"));
+                    target.setTargetPort(Integer.valueOf(preferences.getString("PREFKEY_PORTSERVEUR_SONDE", "1610")));
+                    target.setCommunity(preferences.getString("PREFKEY_COMMUNITY_SONDE", "DataCenterVDR"));
                     SnmpOID oid = new SnmpOID(".1.3.6.1.4.1.21796.4.1.3.1.4.1");
                     target.setSnmpOID(oid);
                     MainActivity.this.result += target.snmpGet();

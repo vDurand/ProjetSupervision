@@ -41,4 +41,6 @@
     <string name="imageDescription">imagetempsmll.jpg</string>
     <string name="title_activity_temp">Statistiques de la baie</string>
     <string name="btnGraph">Courbe des statistiques</string>
+    <string name="pref_cat_name_title_sql">Nom de la BDD</string>
+    <string name="pref_cat_name_summary_sql">Entrer le nom de la BDD</string>
 </resources>

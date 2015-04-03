@@ -2,7 +2,7 @@
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
     <PreferenceCategory android:title="@string/pref_cat_serveur_sql">
         <EditTextPreference
-            android:defaultValue="82.233.233.249"
+            android:defaultValue="82.233.223.249"
             android:key="PREFKEY_IPSERVEUR_SQL"
             android:summary="@string/pref_cat_host_summary_sql"
             android:title="@string/pref_cat_host_title_sql" />
@@ -11,6 +11,11 @@
             android:key="PREFKEY_PORTSERVEUR_SQL"
             android:summary="@string/pref_cat_port_summary_sql"
             android:title="@string/pref_cat_port_title_sql" />
+        <EditTextPreference
+            android:defaultValue="Supervision"
+            android:key="PREFKEY_NAME_SQL"
+            android:summary="@string/pref_cat_name_summary_sql"
+            android:title="@string/pref_cat_name_title_sql" />
         <EditTextPreference
             android:defaultValue="supervision"
             android:key="PREFKEY_USERNAME_SQL"
