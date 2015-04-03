@@ -34,22 +34,17 @@ public class TempListActivity extends ActionBarActivity implements OnInitListene
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        updateAttributsFromPreferences();
         Intent intent = getIntent();
         message = intent.getStringExtra(MainActivity.EXTRA_MESSAGE);
         System.out.println(message);
         setContentView(R.layout.temp_stat);
         btnGraph = (Button) findViewById(R.id.button);
         btnGraph.setEnabled(false);
-
-        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+System.out.println(ip+" "+port+" "+bdd+" "+username+" "+password);
 
         try {
-            clientBDD = new ClientSQL(
-                    prefs.getString( PreferencesFragments.PREFKEY_IPSERVEUR_SQL, "82.233.223.249"),
-                    prefs.getString( PreferencesFragments.PREFKEY_PORTSERVEUR_SQL, "1433"),
-                    prefs.getString( PreferencesFragments.PREFKEY_NAME_SQL, "Supervision"),
-                    prefs.getString( PreferencesFragments.PREFKEY_USERNAME_SQL, "supervision"),
-                    prefs.getString( PreferencesFragments.PREFKEY_PASSWORD_SQL, "Password1234"), 5);
+            clientBDD = new ClientSQL(ip, port, bdd, username, password, 5);
         }
         catch (SQLException e) {
             System.err.println("Caught SQLException: " + e.getMessage());
@@ -234,5 +229,14 @@ public class TempListActivity extends ActionBarActivity implements OnInitListene
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    public void updateAttributsFromPreferences(){
+        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+        ip = prefs.getString( PreferencesFragments.PREFKEY_IPSERVEUR_SQL, "82.233.223.249");
+        port = prefs.getString( PreferencesFragments.PREFKEY_PORTSERVEUR_SQL, "1433");
+        bdd = prefs.getString( PreferencesFragments.PREFKEY_NAME_SQL, "Supervision");
+        username = prefs.getString( PreferencesFragments.PREFKEY_USERNAME_SQL, "supervision");
+        password = prefs.getString( PreferencesFragments.PREFKEY_PASSWORD_SQL, "Password1234");
     }
 }

@@ -39,7 +39,7 @@ public class MainActivity extends ActionBarActivity {
     private String bdd = "Supervision";
     private String username = "supervision";
     private String password = "Password1234";
-    private ClientSQL clientBDD;
+    //private ClientSQL clientBDD;
     public String result;
 
     private BroadcastReceiver connexionReceiver;
@@ -48,6 +48,8 @@ public class MainActivity extends ActionBarActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        updateAttributsFromPreferences();
+        this.preferences = PreferenceManager.getDefaultSharedPreferences(this);
         txtHDD = (TextView)findViewById(R.id.DiskUsageTxt);
         txtCPU = (TextView)findViewById(R.id.CpuUsageTxt);
         txtTEMP = (TextView)findViewById(R.id.TempUsageTxt);
@@ -106,16 +108,9 @@ public class MainActivity extends ActionBarActivity {
             }
         };
         registerReceiver(connexionReceiver,filtreConnectivity);
-
-        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
-
+        /*
         try {
-            clientBDD = new ClientSQL(
-                    prefs.getString( PreferencesFragments.PREFKEY_IPSERVEUR_SQL, "82.233.223.249"),
-                    prefs.getString( PreferencesFragments.PREFKEY_PORTSERVEUR_SQL, "1433"),
-                    prefs.getString( PreferencesFragments.PREFKEY_NAME_SQL, "Supervision"),
-                    prefs.getString( PreferencesFragments.PREFKEY_USERNAME_SQL, "supervision"),
-                    prefs.getString( PreferencesFragments.PREFKEY_PASSWORD_SQL, "Password1234"), 5);
+            clientBDD = new ClientSQL(ip, port, bdd, username, password, 5);
         }
         catch (SQLException e) {
             System.err.println("Caught SQLException: " + e.getMessage());
@@ -128,7 +123,7 @@ public class MainActivity extends ActionBarActivity {
         }
         catch (ClassNotFoundException e){
             System.err.println("Caught ClassNotFoundException: " + e.getMessage());
-        }
+        }*/
 
 
         txtHDD.setText(HDDusage);
@@ -170,7 +165,6 @@ public class MainActivity extends ActionBarActivity {
     }
 
     public void onClickBtnDiskUsage(View v){
-        this.preferences = PreferenceManager.getDefaultSharedPreferences(this);
         new Thread(new Runnable() {
             public void run() {
                 try{
