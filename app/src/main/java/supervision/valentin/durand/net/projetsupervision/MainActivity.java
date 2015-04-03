@@ -162,13 +162,16 @@ public class MainActivity extends ActionBarActivity {
         password = prefs.getString( PreferencesFragments.PREFKEY_PASSWORD_SQL, "Password1234");
     }
 
+    protected SharedPreferences preferences;
+
     public void onClickBtnDiskUsage(View v){
+        this.preferences = PreferenceManager.getDefaultSharedPreferences(this);
         new Thread(new Runnable() {
             public void run() {
                 try{
                     MainActivity.this.result = "Capacité : ";
                     SnmpTarget target = new SnmpTarget();
-                    target.setTargetHost("82.233.223.249");
+                    target.setTargetHost(preferences.getString("PREFKEY_IPSERVEUR_SNMP", "82.233.223.249"));
                     target.setTargetPort(161);
                     target.setCommunity("DataCenterVDR");
                     SnmpOID oidCap = new SnmpOID(".1.3.6.1.2.1.25.2.3.1.5.1");
