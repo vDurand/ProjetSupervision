@@ -60,7 +60,7 @@ public class plotHDDactivity extends ActionBarActivity {
         plot.getGraphWidget().getDomainOriginLinePaint().setColor(Color.BLACK);
         plot.getGraphWidget().getGridBackgroundPaint().setColor(Color.WHITE);
 
-        XYSeries graphTemp = new SimpleXYSeries(Arrays.asList(abscisse), Arrays.asList(ordonne), "Température de la baie en °C");
+        XYSeries graphTemp = new SimpleXYSeries(Arrays.asList(abscisse), Arrays.asList(ordonne), "Occupation du disque dur");
         plot.addSeries(graphTemp, new LineAndPointFormatter(Color.rgb(255, 0, 0), Color.rgb(0, 0, 0), Color.argb(20, 255, 0, 0), new PointLabelFormatter(Color.BLACK)));
 
     }
