@@ -7,6 +7,7 @@ package supervision.valentin.durand.net.projetsupervision;
         import android.view.MenuItem;
         import android.speech.tts.TextToSpeech.OnInitListener;
         import android.view.View;
+        import android.widget.Button;
         import android.widget.ListView;
         import android.widget.TextView;
 
@@ -26,6 +27,7 @@ public class TempListActivity extends ActionBarActivity implements OnInitListene
     private String username = "supervision";
     private String password = "Password1234";
     private String message;
+    private Button btnGraph;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,6 +36,8 @@ public class TempListActivity extends ActionBarActivity implements OnInitListene
         message = intent.getStringExtra(MainActivity.EXTRA_MESSAGE);
 System.out.println(message);
         setContentView(R.layout.temp_stat);
+        btnGraph = (Button) findViewById(R.id.button);
+        btnGraph.setEnabled(false);
 
         try {
             clientBDD = new ClientSQL(ip, port, bdd, username, password, 5);
@@ -98,6 +102,7 @@ System.out.println(message);
                 runOnUiThread(new Runnable(){
                     public void run(){
                         TempListActivity.this.arrayTempAdapt.notifyDataSetChanged();
+                        TempListActivity.this.btnGraph.setEnabled(true);
                     }
                 });
             }
@@ -132,6 +137,7 @@ System.out.println(message);
                 runOnUiThread(new Runnable(){
                     public void run(){
                         TempListActivity.this.arrayTempAdapt.notifyDataSetChanged();
+                        TempListActivity.this.btnGraph.setEnabled(true);
                     }
                 });
             }
@@ -162,6 +168,7 @@ System.out.println(message);
                 runOnUiThread(new Runnable(){
                     public void run(){
                         TempListActivity.this.arrayTempAdapt.notifyDataSetChanged();
+                        TempListActivity.this.btnGraph.setEnabled(true);
                     }
                 });
             }

@@ -29,6 +29,15 @@ public class plotHDDactivity extends ActionBarActivity {
 
         Intent intent = getIntent();
         arrayF = (ArrayList<Lecture>) intent.getSerializableExtra("stockage");
+        plot = (XYPlot) findViewById(R.id.hdd_graph);
+
+        plot.getBorderPaint().setColor(Color.BLACK);
+        plot.getBackgroundPaint().setColor(Color.BLACK);
+        plot.setDrawingCacheBackgroundColor(Color.BLACK);
+        plot.getGraphWidget().getBackgroundPaint().setColor(Color.BLACK);
+        plot.getGraphWidget().getRangeOriginLinePaint().setColor(Color.BLACK);
+        plot.getGraphWidget().getDomainOriginLinePaint().setColor(Color.BLACK);
+        plot.getGraphWidget().getGridBackgroundPaint().setColor(Color.WHITE);
 
         setContentView(R.layout.hdd_graph);
 
@@ -48,21 +57,14 @@ public class plotHDDactivity extends ActionBarActivity {
             }
         }
 
-        plot = (XYPlot) findViewById(R.id.hdd_graph);
+
         plot.setRangeLabel("%");
         plot.setDomainLabel("Temps relatif");
         plot.setRangeBoundaries(20000000, 30000000, BoundaryMode.FIXED);
-        plot.getBorderPaint().setColor(Color.BLACK);
-        plot.getBackgroundPaint().setColor(Color.BLACK);
-        plot.setDrawingCacheBackgroundColor(Color.BLACK);
-        plot.getGraphWidget().getBackgroundPaint().setColor(Color.BLACK);
-        plot.getGraphWidget().getRangeOriginLinePaint().setColor(Color.BLACK);
-        plot.getGraphWidget().getDomainOriginLinePaint().setColor(Color.BLACK);
-        plot.getGraphWidget().getGridBackgroundPaint().setColor(Color.WHITE);
+
 
         XYSeries graphTemp = new SimpleXYSeries(Arrays.asList(abscisse), Arrays.asList(ordonne), "Occupation du disque dur");
         plot.addSeries(graphTemp, new LineAndPointFormatter(Color.rgb(255, 0, 0), Color.rgb(0, 0, 0), Color.argb(20, 255, 0, 0), new PointLabelFormatter(Color.BLACK)));
-
     }
 
     @Override
