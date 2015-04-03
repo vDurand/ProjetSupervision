@@ -1,19 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-
     <string name="app_name">ProjetSupervision</string>
     <string name="action_settings">Settings</string>
-    <string name="appTitle">Application de supervision</string>
-    <string name="BtnDiskUsage">Consulter l\'usage disque</string>
-    <string name="DiskUsageTitle">Utilisation DD:</string>
-    <string name="BtnCpuUsage">Consulter l\'usage processeur</string>
-    <string name="CpuUsageTitle">Utilisation Processeur:</string>
-    <string name="BtnTempUsage">Consulter la température de la baie</string>
-    <string name="TempUsageTitle">Température baie:</string>
-    <string name="BtnHddStat">Statistique usage du disque dur</string>
-    <string name="BtnCpuStat">Statistique usage du processeur</string>
-    <string name="BtnTempStat">Statistique de température de la baie</string>
-    <string name="pref_cat_serveur_sql">Paramètres du Serveur BDD</string>
+    <string name="appTitle">Supervision application</string>
+    <string name="BtnDiskUsage">Show disk usage</string>
+    <string name="DiskUsageTitle">Hard drive usage:</string>
+    <string name="BtnCpuUsage">Show processor usage</string>
+    <string name="CpuUsageTitle">Processor usage:</string>
+    <string name="BtnTempUsage">Show bay tempeture</string>
+    <string name="TempUsageTitle">Bay tempeture:</string>
+    <string name="BtnHddStat">Hard drive usage stat</string>
+    <string name="BtnCpuStat">Processor usage stat</string>
+    <string name="BtnTempStat">Temp usage stat</string>
+    <string name="pref_cat_serveur_sql">DB server parameter</string>
     <string name="pref_cat_host_summary_sql">Entrer l\'adresse ou le nom d\'hôte</string>
     <string name="pref_cat_host_title_sql">Serveur SQL Express</string>
     <string name="pref_cat_port_summary_sql">Entrer le port d\'écoute du serveur</string>
@@ -37,8 +36,8 @@
     <string name="pref_cat_community_summary_sonde">Entrer la communauté SNMP en lecture</string>
     <string name="pref_cat_community_title_sonde">Communauté SNMP en lecture</string>
     <string name="menu_preferences">Settings</string>
-    <string name="tempstattitle">Statistiques des températures</string>
+    <string name="tempstattitle">Temp stat</string>
     <string name="imageDescription">imagetempsmll.jpg</string>
-    <string name="title_activity_temp">Statistiques de la baie</string>
-    <string name="btnGraph">Courbe des statistiques</string>
+    <string name="title_activity_temp">Bay stats</string>
+    <string name="btnGraph">Stat chart</string>
 </resources>

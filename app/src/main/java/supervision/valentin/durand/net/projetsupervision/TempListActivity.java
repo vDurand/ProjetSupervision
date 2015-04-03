@@ -34,7 +34,7 @@ public class TempListActivity extends ActionBarActivity implements OnInitListene
         super.onCreate(savedInstanceState);
         Intent intent = getIntent();
         message = intent.getStringExtra(MainActivity.EXTRA_MESSAGE);
-System.out.println(message);
+        System.out.println(message);
         setContentView(R.layout.temp_stat);
         btnGraph = (Button) findViewById(R.id.button);
         btnGraph.setEnabled(false);
@@ -61,6 +61,9 @@ System.out.println(message);
 
         if(savedInstanceState!=null){
             this.arrayF = (ArrayList<Lecture>) savedInstanceState.getSerializable(TempListActivity.TABLE_F_KEY);
+            if(this.arrayF.size()>0){
+                this.btnGraph.setEnabled(true);
+            }
         }
         else{
             TextView titleTextView = (TextView)findViewById(R.id.textView5);
@@ -69,11 +72,11 @@ System.out.println(message);
                 LoadTemp();
             }
             if(message.equals("2")){
-                titleTextView.setText("Statistiques des processeurs de la baie");
+                titleTextView.setText("Statistiques des processeurs");
                 LoadCpu();
             }
             if(message.equals("1")){
-                titleTextView.setText("Statistiques du disque dur de la baie");
+                titleTextView.setText("Statistiques du disque dur");
                 LoadHdd();
             }
         }
@@ -102,7 +105,9 @@ System.out.println(message);
                 runOnUiThread(new Runnable(){
                     public void run(){
                         TempListActivity.this.arrayTempAdapt.notifyDataSetChanged();
-                        TempListActivity.this.btnGraph.setEnabled(true);
+                        if(TempListActivity.this.arrayF.size()>0){
+                            TempListActivity.this.btnGraph.setEnabled(true);
+                        }
                     }
                 });
             }
@@ -137,7 +142,9 @@ System.out.println(message);
                 runOnUiThread(new Runnable(){
                     public void run(){
                         TempListActivity.this.arrayTempAdapt.notifyDataSetChanged();
-                        TempListActivity.this.btnGraph.setEnabled(true);
+                        if(TempListActivity.this.arrayF.size()>0){
+                            TempListActivity.this.btnGraph.setEnabled(true);
+                        }
                     }
                 });
             }
@@ -168,7 +175,9 @@ System.out.println(message);
                 runOnUiThread(new Runnable(){
                     public void run(){
                         TempListActivity.this.arrayTempAdapt.notifyDataSetChanged();
-                        TempListActivity.this.btnGraph.setEnabled(true);
+                        if(TempListActivity.this.arrayF.size()>0){
+                            TempListActivity.this.btnGraph.setEnabled(true);
+                        }
                     }
                 });
             }
