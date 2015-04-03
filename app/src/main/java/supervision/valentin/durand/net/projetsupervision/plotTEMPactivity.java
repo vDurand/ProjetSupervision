@@ -39,19 +39,19 @@ public class plotTEMPactivity extends ActionBarActivity {
 
         abscisse = new Float[ordonne.length];
         int step = 100 / ordonne.length;
-        for (int i = 0; i < ordonne.length; i++) {
-            if (i > 0) {
-                abscisse[i] = step + abscisse[i - 1].floatValue();
-            } else {
-                Float fX = new Float(step);
-                abscisse[i] = fX.floatValue();
-            }
+        Float fX = new Float(step);
+        abscisse[0] = fX.floatValue();
+        for (int i = 1; i < ordonne.length; i++) {
+            abscisse[i] = step + abscisse[i - 1].floatValue();
         }
+
+        float max = max(ordonne);
+        float min = min(ordonne);
 
         plot = (XYPlot) findViewById(R.id.temp_graph);
         plot.setRangeLabel("%");
         plot.setDomainLabel("Temps relatif");
-        plot.setRangeBoundaries(10, 40, BoundaryMode.FIXED);
+        plot.setRangeBoundaries(min-5, max+5, BoundaryMode.FIXED);
         plot.getBorderPaint().setColor(Color.BLACK);
         plot.getBackgroundPaint().setColor(Color.BLACK);
         plot.setDrawingCacheBackgroundColor(Color.BLACK);
@@ -74,5 +74,49 @@ public class plotTEMPactivity extends ActionBarActivity {
     public boolean onCreateOptionsMenu(Menu menu) {
 
         return true;
+    }
+
+    public static float max(Float[] array) {
+        // Validates input
+        if (array == null) {
+            throw new IllegalArgumentException("The Array must not be null");
+        } else if (array.length == 0) {
+            throw new IllegalArgumentException("Array cannot be empty.");
+        }
+
+        // Finds and returns max
+        float max = array[0];
+        for (int j = 1; j < array.length; j++) {
+            if (Float.isNaN(array[j])) {
+                return Float.NaN;
+            }
+            if (array[j] > max) {
+                max = array[j];
+            }
+        }
+
+        return max;
+    }
+
+    public static float min(Float[] array) {
+        // Validates input
+        if (array == null) {
+            throw new IllegalArgumentException("The Array must not be null");
+        } else if (array.length == 0) {
+            throw new IllegalArgumentException("Array cannot be empty.");
+        }
+
+        // Finds and returns min
+        float min = array[0];
+        for (int i = 1; i < array.length; i++) {
+            if (Float.isNaN(array[i])) {
+                return Float.NaN;
+            }
+            if (array[i] < min) {
+                min = array[i];
+            }
+        }
+
+        return min;
     }
 }

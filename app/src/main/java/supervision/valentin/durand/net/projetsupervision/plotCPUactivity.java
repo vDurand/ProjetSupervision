@@ -39,13 +39,10 @@ public class plotCPUactivity extends ActionBarActivity {
 
         abscisse = new Float[ordonne.length];
         int step = 100 / ordonne.length;
-        for (int i = 0; i < ordonne.length; i++) {
-            if (i > 0) {
-                abscisse[i] = step + abscisse[i - 1].floatValue();
-            } else {
-                Float fX = new Float(step);
-                abscisse[i] = fX.floatValue();
-            }
+        Float fX = new Float(step);
+        abscisse[0] = fX.floatValue();
+        for (int i = 1; i < ordonne.length; i++) {
+            abscisse[i] = step + abscisse[i - 1].floatValue();
         }
 
         plot = (XYPlot) findViewById(R.id.cpu_graph);
